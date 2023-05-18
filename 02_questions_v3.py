@@ -1,13 +1,23 @@
 """Component 2 - Questions (version 1)
-Display question 1 when new window is opened
+Used a constant variable to store question one - saves up space
 """
 from tkinter import *
-
 root = Tk()
 
 
-# Launches Maori Quiz
-def start_quiz():
+class Quiz:
+    def __init__(self, question_num, question):
+        self.question_num = question_num
+        self.question = question
+        questions_list.append(self)
+
+    def display_questions(self, tk):
+        # Creates label for question
+        question_lbl = Label(tk, text=self.question, font=("Calibri", 25))
+        question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+
+
+def start_quiz():  # Launches Maori Quiz
     root.destroy()  # Deletes the starting window
 
     # New Window is created using Tk class
@@ -23,18 +33,21 @@ def start_quiz():
                           font=("Calibri", 30, "bold"))
     quiz_name.pack()
 
-    # Creates label for question
-    question_lbl = Label(new, text="Q1: What is the colour red in Maori?",
-                         font=("Calibri", 25, "normal"))
-    question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+    # Quiz questions
+    question_one = "Q1: What is the colour red in Maori?"
+    Quiz.display_questions(question_one, new)
 
     new.mainloop()
 
 
+# Intro Window set ups
 root.title("Maori Quiz")  # Sets title for window
 root.geometry("900x600")  # Sets dimensions for window
 
-# Intro to welcome user
+# Setting up variables
+questions_list = []
+
+# Labels to welcome user
 welcome_lbl = Label(root, text="Welcome to the",
                     font=("Calibri", 20, "bold"), fg="black")
 

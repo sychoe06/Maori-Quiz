@@ -1,5 +1,5 @@
 """Component 2 - Questions (version 1)
-Display question 1 when new window is opened
+Used a constant variable to store question one - saves up space
 """
 from tkinter import *
 
@@ -23,9 +23,11 @@ def start_quiz():
                           font=("Calibri", 30, "bold"))
     quiz_name.pack()
 
+    # Quiz questions
+    question_one = "Q1: What is the colour red in Maori?"
+
     # Creates label for question
-    question_lbl = Label(new, text="Q1: What is the colour red in Maori?",
-                         font=("Calibri", 25, "normal"))
+    question_lbl = Label(new, text=question_one, font=("Calibri", 25))
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
 
     new.mainloop()
