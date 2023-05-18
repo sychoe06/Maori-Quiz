@@ -9,13 +9,29 @@ root = Tk()
 # Launches Maori Quiz
 def start_quiz():
     root.destroy()  # Deletes the starting window
+
     # New Window is created using Tk class
     new = Tk()
     new.title("Maori Quiz")  # Sets title for new window
-
     new.geometry("900x600")  # Sets dimensions
-    question_lbl = Label(new, text="What is the colour red in Maori")
-    question_lbl.pack()
+
+    # Sets max and min dimensions for new window
+    new.maxsize(900, 600)
+    new.minsize(700, 600)
+
+    # Create a canvas object
+    canvas = Canvas(new, width=900, height=100, bg="red")
+
+    # Add question number in Canvas
+    canvas.create_text(150, 50, text="Question 1:",
+                       fill="white", font=("Calibri", 30, "bold"))
+    canvas.pack()
+
+    # Creates label for question
+    question_lbl = Label(new, text="What is the colour red in Maori?",
+                         font=("Calibri", 25, "normal"))
+    question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+
     new.mainloop()
 
 
