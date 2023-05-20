@@ -6,7 +6,7 @@ from tkinter import *
 root = Tk()
 
 
-# Launches Maori Quiz
+# Starts Maori Quiz
 def start_quiz():
     root.destroy()  # Deletes the starting window
     # New Window is created using Tk class
