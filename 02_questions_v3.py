@@ -1,32 +1,45 @@
-"""Component 2 - Questions (version 1)
-Used a constant variable to store question one - saves up space
+"""Component 2 - Questions (version 3)
+Using class to define question
 """
 from tkinter import *
+
 root = Tk()
 
 
-class Quiz:
-    def __init__(self, question_num, question):
-        self.question_num = question_num
-        self.question = question
-        questions_list.append(self)
+# Intro window to start the quiz
+def intro():
+    root.title("Maori Quiz")  # Sets title for window
+    root.geometry("900x600")  # Sets dimensions for window
 
-    def display_questions(self, tk):
-        # Creates label for question
-        question_lbl = Label(tk, text=self.question, font=("Calibri", 25))
-        question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+    # Intro to welcome user
+    welcome_lbl = Label(root, text="Welcome to the",
+                        font=("Calibri", 20, "bold"), fg="black")
+    maori_quiz_lbl = Label(root, text="Maori Quiz",
+                           font=("Calibri", 50, "bold"), fg="red")
+
+    # Start button - activates quiz when clicked
+    start_btn = Button(root, text="START", command=start_quiz,
+                       font=("Calibri", 20, "bold"), fg="white", bg="black")
+
+    # Setting position - centering labels and button
+    welcome_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
+    maori_quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+    start_btn.place(relx=0.5, rely=0.6, anchor=CENTER)
+
+    root.mainloop()
 
 
-def start_quiz():  # Launches Maori Quiz
+# Launches Maori Quiz
+def start_quiz():
     root.destroy()  # Deletes the starting window
 
     # New Window is created using Tk class
-    new = Tk()
-    new.title("Maori Quiz")  # Sets title for new window
-    new.geometry("900x600")  # Sets dimensions
+    win = Tk()
+    win.title("Maori Quiz")  # Sets title for new window
+    win.geometry("900x600")  # Sets dimensions
 
     # Create a canvas object
-    quiz_name = Canvas(new, width=900, height=100, bg="red")
+    quiz_name = Canvas(win, width=900, height=100, bg="red")
 
     # Add the name "Maori Quiz" in Canvas
     quiz_name.create_text(450, 50, text="Maori Quiz", fill="white",
@@ -35,32 +48,14 @@ def start_quiz():  # Launches Maori Quiz
 
     # Quiz questions
     question_one = "Q1: What is the colour red in Maori?"
-    Quiz.display_questions(question_one, new)
 
-    new.mainloop()
+    # Creates label for question
+    question_lbl = Label(win, text=question_one, font=("Calibri", 25))
+    question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+
+    win.mainloop()
 
 
-# Intro Window set ups
-root.title("Maori Quiz")  # Sets title for window
-root.geometry("900x600")  # Sets dimensions for window
+# Main routine
+intro()
 
-# Setting up variables
-questions_list = []
-
-# Labels to welcome user
-welcome_lbl = Label(root, text="Welcome to the",
-                    font=("Calibri", 20, "bold"), fg="black")
-
-Maori_Quiz_lbl = Label(root, text="Maori Quiz",
-                       font=("Calibri", 50, "bold"), fg="red")
-
-# Start button - activates quiz when clicked
-start_btn = Button(root, text="START", command=start_quiz,
-                   font=("Calibri", 20, "bold"), fg="white", bg="black")
-
-# Setting position - centering labels and button
-welcome_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
-Maori_Quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
-start_btn.place(relx=0.5, rely=0.6, anchor=CENTER)
-
-root.mainloop()
