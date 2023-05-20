@@ -6,7 +6,7 @@ from tkinter import *
 root = Tk()
 
 
-# Launches Maori Quiz
+# Starts Maori Quiz
 def start_quiz():
     # Toplevel object which will be treated as a new window
     new = Toplevel(root)
@@ -25,7 +25,7 @@ root.geometry("900x600")  # Sets dimensions for window
 welcome_lbl = Label(root, text="Welcome to the",
                     font=("Calibri", 20, "bold"), fg="black")
 
-Maori_Quiz_lbl = Label(root, text="Maori Quiz",
+main_quiz_lbl = Label(root, text="Maori Quiz",
                        font=("Calibri", 50, "bold"), fg="red")
 
 # Start button - activates quiz when clicked
@@ -34,7 +34,7 @@ start_btn = Button(root, text="START", command=start_quiz,
 
 # Setting position - centering labels and button
 welcome_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
-Maori_Quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+main_quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
 start_btn.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 root.mainloop()
