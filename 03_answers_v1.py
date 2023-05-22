@@ -1,10 +1,10 @@
-"""Component 3 - Answers (version 1)
-
+"""Component 3 - Answers (version 1) - Trial one
+Displaying options to answer question as buttons
 """
 from tkinter import *
 
 root = Tk()
-questions_list = [(1, "Q1: What is red in Maori?")]
+questions_list = [(1, "Q1: What is red in Maori?", "Whero")]
 options_list = [(1, "Whero", "Kowhai", "Ma")]
 
 
@@ -53,7 +53,7 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
-    setup_options(win, 1)
+    display_options(win, 1)  # Display options for Q1
 
     # Sets up options for question
 
@@ -69,23 +69,23 @@ def change_question(lbl, q_num):
             lbl.config(text=question)
 
 
-def setup_options(parent, q_num):
+# Displays options for each question
+def display_options(parent, q_num):
     for opts in options_list:
+        # If the question number matches with the options for that question
+        # Then display those options as buttons
         if opts[0] == q_num:
-            opt1 = opts[1]
-            display_button(parent, opt1, 50)
+            opt1 = Button(parent, text=opts[1], font=("Calibri", 25),
+                          width=10, fg="white", bg="black")
+            opt1.place(x=50, y=300)
 
-            opt2 = opts[2]
-            display_button(parent, opt2, 350)
+            opt2 = Button(parent, text=opts[2], font=("Calibri", 25),
+                          width=10, fg="white", bg="black")
+            opt2.place(x=350, y=300)
 
-            opt3 = opts[3]
-            display_button(parent, opt3, 650)
-
-
-def display_button(parent, opt_text, opt_x):
-    opt_btn = Button(parent, text=opt_text, font=("Calibri", 25),
-                     width=10, fg="white", bg="black")
-    opt_btn.place(x=opt_x, y=300)
+            opt2 = Button(parent, text=opts[3], font=("Calibri", 25),
+                          width=10, fg="white", bg="black")
+            opt2.place(x=650, y=300)
 
 
 # Main Routine
