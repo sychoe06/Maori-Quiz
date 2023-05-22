@@ -1,4 +1,4 @@
-"""Component 2 - Questions (version 3)
+"""Component 2 - Questions (version 3) - Trial Three
 Uses a function to change the text in the question label when called
 """
 from tkinter import *

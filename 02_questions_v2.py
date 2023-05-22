@@ -1,4 +1,4 @@
-"""Component 2 - Questions (version 2)
+"""Component 2 - Questions (version 2) - Trial Two
 Uses a function to create another question when called
 """
 from tkinter import *

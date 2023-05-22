@@ -1,4 +1,4 @@
-"""Component 2 - Questions (version 1)
+"""Component 2 - Questions (version 1) - Trial One
 Displays question 1 when window is opened by creating a label
 """
 from tkinter import *
