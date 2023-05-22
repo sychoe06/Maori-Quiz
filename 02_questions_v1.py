@@ -1,5 +1,5 @@
 """Component 2 - Questions (version 1)
-Displays question 1 when window is opened
+Displays question 1 when window is opened by creating a label
 """
 from tkinter import *
 
@@ -47,7 +47,7 @@ def start_quiz():
     quiz_name.pack()
 
     # Quiz questions
-    question_one = "Q1: What is the colour red in Maori?"
+    question_one = "Q1: What is red in Maori?"
 
     # Creates label for question
     question_lbl = Label(win, text=question_one, font=("Calibri", 25))
