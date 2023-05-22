@@ -1,5 +1,5 @@
 """Component 2 - Questions (version 2)
-Used a constant variable to store question one - saves up space
+Uses a function to create another question when called
 """
 from tkinter import *
 
@@ -46,14 +46,20 @@ def start_quiz():
                           font=("Calibri", 30, "bold"))
     quiz_name.pack()
 
-    # Quiz questions
-    question_one = "Q1: What is the colour red in Maori?"
-
-    # Creates label for question
-    question_lbl = Label(win, text=question_one, font=("Calibri", 25))
-    question_lbl.place(relx=0.06, rely=0.25, anchor=NW)  # sets position
+    # Displays question
+    display_question(win, 1)  # Question 1
 
     win.mainloop()
+
+
+def display_question(parent, q_num):
+    questions_list = [(1, "Q1: What is red in Maori?")]
+    for qt in questions_list:
+        if qt[0] == q_num:
+            question = f"{qt[1]}"
+            # Creates label for question
+            question_lbl = Label(parent, text=question, font=("Calibri", 25))
+            question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
 
 # Main Routine

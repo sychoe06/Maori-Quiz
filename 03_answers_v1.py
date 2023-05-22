@@ -1,9 +1,11 @@
-"""Component 2 - Questions (version 3)
-Uses a function to change the text in the question label when called
+"""Component 3 - Answers (version 1)
+
 """
 from tkinter import *
 
 root = Tk()
+questions_list = [(1, "Q1: What is red in Maori?")]
+options_list = [(1, "Whero", "Kowhai", "Ma")]
 
 
 # Intro window to start the quiz
@@ -51,17 +53,39 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
+    setup_options(win, 1)
+
+    # Sets up options for question
 
     win.mainloop()
 
 
-def change_question(label, q_num):
-    questions_list = [(1, "Q1: What is red in Maori?")]
+# Changes the text in the question label
+def change_question(lbl, q_num):
     for qt in questions_list:
-        if qt[0] == q_num:
+        if qt[0] == q_num:  # If it is question one
             question = f"{qt[1]}"
             # Changes the text in the question label
-            label.config(text=question)
+            lbl.config(text=question)
+
+
+def setup_options(parent, q_num):
+    for opts in options_list:
+        if opts[0] == q_num:
+            opt1 = opts[1]
+            display_button(parent, opt1, 50)
+
+            opt2 = opts[2]
+            display_button(parent, opt2, 350)
+
+            opt3 = opts[3]
+            display_button(parent, opt3, 650)
+
+
+def display_button(parent, opt_text, opt_x):
+    opt_btn = Button(parent, text=opt_text, font=("Calibri", 25),
+                     width=10, fg="white", bg="black")
+    opt_btn.place(x=opt_x, y=300)
 
 
 # Main Routine
