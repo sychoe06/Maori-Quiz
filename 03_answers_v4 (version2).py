@@ -1,5 +1,5 @@
 """Component 3 - Answers (version 3)
-Command option buttons to check answer when clicked
+
 """
 from tkinter import *
 
@@ -53,7 +53,7 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
-    setup_options(win, 1)
+    display_options(win, 1)
 
     # Sets up options for question
 
@@ -82,6 +82,8 @@ def setup_options(master, q_num):
             opt3 = opts[3]  # Option 3
             b3 = display_options(master, opt3, 650)  # calls function to display
 
+            if
+
 
 # Displays options as buttons
 def display_options(master, opt_text, opt_x):
@@ -93,7 +95,7 @@ def display_options(master, opt_text, opt_x):
 
 
 # Checks if selected option is correct answer
-def check_answer(selected_opt, master, opt_x):
+def check_answer(selected_opt, master, opt_x, btn1, btn2, btn3):
     for answer in questions_list:
         if selected_opt == answer[2]:
             correct_lbl = Label(master, text="Correct!", font=("Calibri", 20),
@@ -104,6 +106,12 @@ def check_answer(selected_opt, master, opt_x):
                                   font=("Calibri", 20), fg="red")
             incorrect_lbl.place(x=opt_x, y=400)
 
+        btn1.config(state="disabled")
+        btn2.config(state="disabled")
+        btn3.config(state="disabled")
+
 
 # Main Routine
 intro()
+white = "white"
+black = "black"

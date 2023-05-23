@@ -1,11 +1,17 @@
 """Component 3 - Answers (version 3)
-
+Disables other buttons when option is selected
 """
 from tkinter import *
 
 root = Tk()
+
+# Setup lists to hold questions, answers and options
 questions_list = [(1, "Q1: What is red in Maori?", "Whero")]
 options_list = [(1, "Whero", "Kowhai", "Ma")]
+
+# Set up variables
+white = "white"
+black = "black"
 
 
 # Intro window to start the quiz
@@ -53,7 +59,7 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
-    display_options(win, 1)
+    display_options(win, 1)  # Displays
 
     # Sets up options for question
 
@@ -75,24 +81,24 @@ def display_options(master, q_num):
         # If the question number matches with the options for that question
         # Then display those options as buttons
         if opts[0] == q_num:
-            opt1 = Button(master, text=opts[1], font=("Calibri", 25),
-                          width=10, fg="white", bg="black", command=lambda:
-                          check_answer(opts[1], master, 50, opt1))
+            opt1 = Button(master, text=opts[1], font=("Calibri", 25), width=10,
+                          fg=white, bg=black, command=lambda:
+                          check_answer(opts[1], master, 50, opt1, opt2, opt3))
             opt1.place(x=50, y=300)
 
-            opt2 = Button(master, text=opts[2], font=("Calibri", 25),
-                          width=10, fg="white", bg="black", command=lambda:
-                          check_answer(opts[2], master, 350, opt2))
+            opt2 = Button(master, text=opts[2], font=("Calibri", 25), width=10,
+                          fg=white, bg=black, command=lambda:
+                          check_answer(opts[2], master, 350, opt1, opt2, opt3))
             opt2.place(x=350, y=300)
 
-            opt3 = Button(master, text=opts[3], font=("Calibri", 25),
-                          width=10, fg="white", bg="black", command=lambda:
-                          check_answer(opts[3], master, 650, opt3))
+            opt3 = Button(master, text=opts[3], font=("Calibri", 25), width=10,
+                          fg=white, bg=black, command=lambda:
+                          check_answer(opts[3], master, 650, opt1, opt2, opt3))
             opt3.place(x=650, y=300)
 
 
 # Checks if selected option is correct answer
-def check_answer(selected_opt, master, opt_x, opt_btn):
+def check_answer(selected_opt, master, opt_x, btn1, btn2, btn3):
     for answer in questions_list:
         if selected_opt == answer[2]:
             correct_lbl = Label(master, text="Correct!", font=("Calibri", 20),
@@ -102,7 +108,10 @@ def check_answer(selected_opt, master, opt_x, opt_btn):
             incorrect_lbl = Label(master, text="Incorrect!",
                                   font=("Calibri", 20), fg="red")
             incorrect_lbl.place(x=opt_x, y=400)
-    opt_btn.config(state="disabled")
+
+        btn1.config(state="disabled")
+        btn2.config(state="disabled")
+        btn3.config(state="disabled")
 
 
 # Main Routine
