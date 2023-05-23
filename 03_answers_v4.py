@@ -1,5 +1,5 @@
-"""Component 3 - Answers (version 4)
-Disables other buttons when option is selected
+"""Component 3 - Answers (version 4) - Trial 1
+Disables other buttons when option is selected (2 separate functions)
 """
 from tkinter import *
 

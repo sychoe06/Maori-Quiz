@@ -1,9 +1,11 @@
-"""Component 3 - Answers (version 3)
-
+"""Component 3 - Answers (version 4) - Trial 2
+Disables other buttons when option is selected (1 function inside another)
 """
 from tkinter import *
 
 root = Tk()
+
+# Setup lists to hold questions, answers and options
 questions_list = [(1, "Q1: What is red in Maori?", "Whero")]
 options_list = [(1, "Whero", "Kowhai", "Ma")]
 
@@ -53,7 +55,7 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
-    display_options(win, 1)
+    display_options(win, 1)  # Displays
 
     # Sets up options for question
 
@@ -69,49 +71,44 @@ def change_question(lbl, q_num):
             lbl.config(text=question)
 
 
-# Sets up options for each question
-def setup_options(master, q_num):
+# Displays options for each question
+def display_options(master, q_num):
     for opts in options_list:
+        # If the question number matches with the options for that question
+        # Then display those options as buttons
         if opts[0] == q_num:
-            opt1 = opts[1]  # Option 1
-            b1 = display_options(master, opt1, 50)  # calls function to display
+            opt1 = Button(master, text=opts[1], font=("Calibri", 25), width=10,
+                          fg="white", bg="black", command=lambda:
+                          check_answer(opts[1], 50))
+            opt1.place(x=50, y=300)
 
-            opt2 = opts[2]  # Option 2
-            b2 = display_options(master, opt2, 350)  # calls function to display
+            opt2 = Button(master, text=opts[2], font=("Calibri", 25), width=10,
+                          fg="white", bg="black", command=lambda:
+                          check_answer(opts[2], 350))
+            opt2.place(x=350, y=300)
 
-            opt3 = opts[3]  # Option 3
-            b3 = display_options(master, opt3, 650)  # calls function to display
+            opt3 = Button(master, text=opts[3], font=("Calibri", 25), width=10,
+                          fg="white", bg="black", command=lambda:
+                          check_answer(opts[3], 650))
+            opt3.place(x=650, y=300)
 
-            if
+    # Checks if selected option is correct answer
+    def check_answer(selected_opt, opt_x):
+        for answer in questions_list:
+            if selected_opt == answer[2]:  # Correct option is selected
+                correct_lbl = Label(master, text="Correct!",
+                                    font=("Calibri", 20), fg="green")
+                correct_lbl.place(x=opt_x, y=400)
+            else:  # Incorrect option is selected
+                incorrect_lbl = Label(master, text="Incorrect!",
+                                      font=("Calibri", 20), fg="red")
+                incorrect_lbl.place(x=opt_x, y=400)
 
-
-# Displays options as buttons
-def display_options(master, opt_text, opt_x):
-    opt_btn = Button(master, text=opt_text, font=("Calibri", 25), width=10,
-                     fg="white", bg="black",
-                     command=lambda: check_answer(opt_text, master, opt_x))
-    opt_btn.place(x=opt_x, y=300)  # Sets position of button
-    return opt_btn
-
-
-# Checks if selected option is correct answer
-def check_answer(selected_opt, master, opt_x, btn1, btn2, btn3):
-    for answer in questions_list:
-        if selected_opt == answer[2]:
-            correct_lbl = Label(master, text="Correct!", font=("Calibri", 20),
-                                fg="green")
-            correct_lbl.place(x=opt_x, y=400)
-        else:
-            incorrect_lbl = Label(master, text="Incorrect!",
-                                  font=("Calibri", 20), fg="red")
-            incorrect_lbl.place(x=opt_x, y=400)
-
-        btn1.config(state="disabled")
-        btn2.config(state="disabled")
-        btn3.config(state="disabled")
+            # Disables all option buttons
+            opt1.config(state="disabled")
+            opt2.config(state="disabled")
+            opt3.config(state="disabled")
 
 
 # Main Routine
 intro()
-white = "white"
-black = "black"
