@@ -9,10 +9,6 @@ root = Tk()
 questions_list = [(1, "Q1: What is red in Maori?", "Whero")]
 options_list = [(1, "Whero", "Kowhai", "Ma")]
 
-# Set up variables
-white = "white"
-black = "black"
-
 
 # Intro window to start the quiz
 def intro():
@@ -82,17 +78,17 @@ def display_options(master, q_num):
         # Then display those options as buttons
         if opts[0] == q_num:
             opt1 = Button(master, text=opts[1], font=("Calibri", 25), width=10,
-                          fg=white, bg=black, command=lambda:
+                          fg="white", bg="black", command=lambda:
                           check_answer(opts[1], master, 50, opt1, opt2, opt3))
             opt1.place(x=50, y=300)
 
             opt2 = Button(master, text=opts[2], font=("Calibri", 25), width=10,
-                          fg=white, bg=black, command=lambda:
+                          fg="white", bg="black", command=lambda:
                           check_answer(opts[2], master, 350, opt1, opt2, opt3))
             opt2.place(x=350, y=300)
 
             opt3 = Button(master, text=opts[3], font=("Calibri", 25), width=10,
-                          fg=white, bg=black, command=lambda:
+                          fg="white", bg="black", command=lambda:
                           check_answer(opts[3], master, 650, opt1, opt2, opt3))
             opt3.place(x=650, y=300)
 
@@ -100,15 +96,16 @@ def display_options(master, q_num):
 # Checks if selected option is correct answer
 def check_answer(selected_opt, master, opt_x, btn1, btn2, btn3):
     for answer in questions_list:
-        if selected_opt == answer[2]:
+        if selected_opt == answer[2]:  # Correct option is selected
             correct_lbl = Label(master, text="Correct!", font=("Calibri", 20),
                                 fg="green")
             correct_lbl.place(x=opt_x, y=400)
-        else:
+        else:  # Incorrect option is selected
             incorrect_lbl = Label(master, text="Incorrect!",
                                   font=("Calibri", 20), fg="red")
             incorrect_lbl.place(x=opt_x, y=400)
 
+        # Disables all option buttons
         btn1.config(state="disabled")
         btn2.config(state="disabled")
         btn3.config(state="disabled")
