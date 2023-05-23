@@ -1,4 +1,4 @@
-"""Component 3 - Answers (version 3)
+"""Component 3 - Answers (version 4)
 Disables other buttons when option is selected
 """
 from tkinter import *
