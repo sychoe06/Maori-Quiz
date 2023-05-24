@@ -1,4 +1,4 @@
-"""Component 4 - Main Loop (version 1)
+"""Component 4 - Run Quiz (version 1)
 Sets min and max size for window, Adds all questions and options to their lists
 Displays a "next" button at the bottom
 """

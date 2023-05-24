@@ -1,4 +1,4 @@
-"""Component 4 - Main Loop (version 3)
+"""Component 4 - Run Quiz (version 3)
 "Next" button can only be clicked once option has been selected.
 Displays an error message if "next" button is clicked before option
 """

@@ -1,4 +1,4 @@
-"""Component 4 - Main Loop (version 2)
+"""Component 4 - Run Quiz (version 2)
 Goes to next question and options when "next" button is clicked
 """
 from tkinter import *

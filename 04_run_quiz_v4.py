@@ -1,4 +1,4 @@
-"""Component 4 - Main Loop (version 4)
+"""Component 4 - Run Quiz (version 4)
 "Correct" or "incorrect" text disappears after a couple seconds and change
 colour of selected option button to green if correct or red if incorrect
 """
