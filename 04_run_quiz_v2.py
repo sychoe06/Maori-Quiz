@@ -25,8 +25,8 @@ QUIZ_NAME = "Maori Quiz"  # Name of Quiz
 BTN_SIZE = 25  # Size for option buttons and start button
 Q_FONT = "Calibri"  # Quiz Font
 DIMENSIONS = "900x600"
-HEIGHT = 900
-WIDTH = 600
+WIDTH = 900
+HEIGHT = 600
 q_num = 0  # Sets question number
 
 
@@ -34,6 +34,7 @@ q_num = 0  # Sets question number
 def intro():
     root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
     root.geometry(DIMENSIONS)  # Sets dimensions for window
+    root.maxsize(WIDTH, HEIGHT)  # Sets maximum dimensions
 
     # Intro to welcome user
     welcome_lbl = Label(root, text="Welcome to the",
@@ -61,11 +62,11 @@ def start_quiz():
     win = Tk()
     win.title(QUIZ_NAME)  # Sets title for new window
     win.geometry(DIMENSIONS)  # Sets dimensions
-    win.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
+    win.maxsize(WIDTH, HEIGHT)  # Sets maximum dimensions
     win.minsize(850, 550)  # Sets minimum dimensions
 
     # Create a canvas object
-    quiz_name = Canvas(win, width=900, height=100, bg=RED)
+    quiz_name = Canvas(win, width=WIDTH, height=100, bg=RED)
 
     # Add the name "Maori Quiz" in Canvas
     quiz_name.create_text(450, 50, text=QUIZ_NAME, fill=WHITE,
