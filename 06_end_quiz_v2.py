@@ -1,5 +1,5 @@
 """Component 6 - End Quiz (version 2)
-
+Shows the user their score out of 6 in the end window
 """
 from tkinter import *
 from tkinter import messagebox
@@ -28,8 +28,8 @@ QUIZ_NAME = "Maori Quiz"  # Name of Quiz
 BTN_SIZE = 25  # Size for option buttons and start button
 Q_FONT = "Calibri"  # Quiz Font
 DIMENSIONS = "900x600"  # Dimensions of window
-HEIGHT = 900  # Height of window
-WIDTH = 600  # Width of window
+WIDTH = 900  # Height of window
+HEIGHT = 600  # Width of window
 
 # Set up variables
 q_num = 0  # Sets question number
@@ -41,7 +41,7 @@ total_num_qt = 6  # Total number of questions
 def intro():
     root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
     root.geometry(DIMENSIONS)  # Sets dimensions for window
-    root.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
+    root.maxsize(WIDTH, HEIGHT)  # Sets maxsize for window
 
     # Intro to welcome user
     welcome_lbl = Label(root, text="Welcome to the",
@@ -69,11 +69,11 @@ def start_quiz():
     win = Tk()
     win.title(QUIZ_NAME)  # Sets title for new window
     win.geometry(DIMENSIONS)  # Sets dimensions
-    win.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
+    win.maxsize(WIDTH, HEIGHT)  # Sets maximum dimensions
     win.minsize(850, 550)  # Sets minimum dimensions
 
     # Create a canvas object
-    quiz_name = Canvas(win, width=900, height=100, bg=RED)
+    quiz_name = Canvas(win, width=WIDTH, height=100, bg=RED)
 
     # Add the name "Maori Quiz" in Canvas
     quiz_name.create_text(450, 50, text=QUIZ_NAME, fill=WHITE,
@@ -121,12 +121,6 @@ def display_options(main, lbl):
                           check_opt(opt3, opt3_txt, 650))
             opt3.place(x=650, y=300)
 
-    global score
-    # Created label to show score increasing (testing purposes only)
-    score_lbl = Label(main, text=f"Score: {score}/{total_num_qt}",
-                      font=(Q_FONT, 20))
-    score_lbl.place(x=650, y=200)
-
     # Checks if selected option is correct answer
     def check_opt(opt_btn, selected_opt, opt_x):
         result_lbl = Label(main, text="", font=(Q_FONT, 20))
@@ -157,13 +151,11 @@ def display_options(main, lbl):
     def add_score():
         global score
         score += 1  # Increases score by one when this function is called
-        score_lbl.config(text=f"Score: {score}/{total_num_qt}")
 
 
 # Displays Next button to go to next question
 def next_button(main, qt_lbl, qt_status):
     global q_num
-    print(q_num)
     next_btn = Button(main, text="Next", font=(Q_FONT, 20), fg=WHITE, bg=GREEN)
     next_btn.place(x=750, y=450)
     # If the question has been answered - option is selected
@@ -199,11 +191,31 @@ def change_question(main, lbl):
 
 # End Maori Quiz window
 def end_quiz(quiz_window):
-    quiz_window.destroy()
+    global score
+    quiz_window.destroy()  # Closes main window for quiz
+
+    # New Window is created using Tk class for the end of the quiz
     end = Tk()
     end.title(f"{QUIZ_NAME} - End")  # Sets title for new window
     end.geometry(DIMENSIONS)  # Sets dimensions
-    end.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
+    end.maxsize(WIDTH, HEIGHT)  # Sets maxsize for window
+
+    # Create a canvas object
+    finished_quiz = Canvas(end, width=WIDTH, height=100, bg=RED)
+
+    # Add the name "Maori Quiz" in Canvas
+    finished_quiz.create_text(450, 50, fill=WHITE, font=(Q_FONT, 30, "bold"),
+                              text="Congrats! You have finished the quiz!")
+    finished_quiz.pack()
+
+    # Score labels created
+    score_lbl = Label(end, text="Your score is...", font=(Q_FONT, 20))
+    score_lbl.place(x=380, y=150)
+    user_score_lbl = Label(end, text=f"{score}/{total_num_qt}",
+                           font=(Q_FONT, 70), fg=WHITE, bg=GREEN)
+    user_score_lbl.place(x=400, y=200)
+
+    end.mainloop()
 
 
 # Main Routine

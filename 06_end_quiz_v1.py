@@ -41,6 +41,7 @@ total_num_qt = 6  # Total number of questions
 def intro():
     root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
     root.geometry(DIMENSIONS)  # Sets dimensions for window
+    root.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
 
     # Intro to welcome user
     welcome_lbl = Label(root, text="Welcome to the",
@@ -197,12 +198,13 @@ def change_question(main, lbl):
 
 # End Maori Quiz window
 def end_quiz(quiz_window):
-    quiz_window.destroy()  # Closes main window for quiz
-
-    # New Window is created using Tk class for the end of the quiz
+    quiz_window.destroy()
     end = Tk()
     end.title(f"{QUIZ_NAME} - End")  # Sets title for new window
     end.geometry(DIMENSIONS)  # Sets dimensions
+    end.maxsize(HEIGHT, WIDTH)  # Sets maximum dimensions
+
+    end.mainloop()
 
 
 # Main Routine
