@@ -1,5 +1,5 @@
 """Component 3 - Answers (version 4) - Trial 2
-Disables other buttons when option is selected (1 function inside another)
+Disables other buttons when option is selected (nested function)
 """
 from tkinter import *
 
