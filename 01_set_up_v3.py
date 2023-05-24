@@ -1,4 +1,4 @@
-"""Component 1 - Start Quiz (version 2)
+"""Component 1 - Set up (version 3)
 Created a function for the intro window at the start
 """
 from tkinter import *

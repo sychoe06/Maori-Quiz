@@ -1,5 +1,5 @@
-"""Component 1 - Start Quiz (version 2)
-Improved version 1 by deleting the starting window when new one is created
+"""Component 1 - Set up (version 1)
+New blank window displayed when start button is clicked
 """
 from tkinter import *
 
@@ -8,14 +8,14 @@ root = Tk()
 
 # Starts Maori Quiz
 def start_quiz():
-    root.destroy()  # Deletes the starting window
-    # New Window is created using Tk class
-    new = Tk()
-    new.title("Maori Quiz")  # Sets title for new window
+    # Toplevel object which will be treated as a new window
+    new = Toplevel(root)
 
-    new.geometry("900x600")  # Sets dimensions
+    # sets the title of the Toplevel widget
+    new.title("New Window")
 
-    new.mainloop()
+    # sets the geometry of toplevel
+    new.geometry("900x600")  # Sets dimensions for window
 
 
 root.title("Maori Quiz")  # Sets title for window
@@ -25,7 +25,7 @@ root.geometry("900x600")  # Sets dimensions for window
 welcome_lbl = Label(root, text="Welcome to the",
                     font=("Calibri", 20, "bold"), fg="black")
 
-Maori_Quiz_lbl = Label(root, text="Maori Quiz",
+main_quiz_lbl = Label(root, text="Maori Quiz",
                        font=("Calibri", 50, "bold"), fg="red")
 
 # Start button - activates quiz when clicked
@@ -34,7 +34,7 @@ start_btn = Button(root, text="START", command=start_quiz,
 
 # Setting position - centering labels and button
 welcome_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
-Maori_Quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+main_quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
 start_btn.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 root.mainloop()
