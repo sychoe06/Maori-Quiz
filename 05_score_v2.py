@@ -1,6 +1,5 @@
-"""Component 5 - Score (version 1)
-Keep a record of the number of questions the user gets correct.
-Increase after each correct option button is clicked.
+"""Component 5 - Score (version 2)
+Create a total number of questions variable
 """
 from tkinter import *
 from tkinter import messagebox
@@ -17,7 +16,7 @@ options_list = [(1, "Whero", "Kowhai", "Ma"), (2, "Tahi", "rima", "Toru"),
                 (5, "Karaka", "Kakariki", "Kowhai"),
                 (6, "Raapa", "Ratu", "Rapare")]
 
-# Set up variables
+# Set up constants
 WHITE = "white"
 BLACK = "black"
 RED = "red"
@@ -28,11 +27,14 @@ LIGHT_RED = "#ffcccb"
 QUIZ_NAME = "Maori Quiz"  # Name of Quiz
 BTN_SIZE = 25  # Size for option buttons and start button
 Q_FONT = "Calibri"  # Quiz Font
-DIMENSIONS = "900x600"
-HEIGHT = 900
-WIDTH = 600
+DIMENSIONS = "900x600"  # Dimensions of window
+HEIGHT = 900  # Height of window
+WIDTH = 600  # Width of window
+
+# Set up variables
 q_num = 0  # Sets question number
-score = 0
+score = 0  # Sets user's score
+total_num_qt = 6  # Total number of questions
 
 
 # Intro window to start the quiz
@@ -118,6 +120,12 @@ def display_options(main, lbl):
                           check_opt(opt3, opt3_txt, 650))
             opt3.place(x=650, y=300)
 
+    global score
+    # Created label to show score increasing (testing purposes only)
+    score_lbl = Label(main, text=f"Score: {score}/{total_num_qt}",
+                      font=(Q_FONT, 20))
+    score_lbl.place(x=650, y=200)
+
     # Checks if selected option is correct answer
     def check_opt(opt_btn, selected_opt, opt_x):
         result_lbl = Label(main, text="", font=(Q_FONT, 20))
@@ -148,9 +156,7 @@ def display_options(main, lbl):
     def add_score():
         global score
         score += 1  # Increases score by one when this function is called
-        # Created label to show score increasing (testing purposes only)
-        score_lbl = Label(main, text=f"Score: {score}", font=(Q_FONT, 20))
-        score_lbl.place(x=650, y=200)
+        score_lbl.config(text=f"Score: {score}/{total_num_qt}")
 
 
 # Displays Next button to go to next question
