@@ -1,6 +1,5 @@
-"""Component 6 - End Quiz (version 3) - Trial 1
-Only using the code needed for the End Quiz component - to save time
-Shows buttons below the score using place()
+"""Component 6 - End Quiz (version 3)
+Shows play again button below the score and changed fg and bg of user's score
 """
 from tkinter import *
 
@@ -21,7 +20,7 @@ HEIGHT = 600  # Width of window
 
 # Set up variables
 q_num = 0  # Sets question number
-score = 6  # Sets user's score
+score = 6  # Set score to 6 for testing purposes
 total_num_qt = 6  # Total number of questions
 
 
@@ -45,16 +44,13 @@ def end_quiz():
     score_lbl = Label(end, text="Your score is...", font=(Q_FONT, 20))
     score_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
     user_score_lbl = Label(end, text=f"{score}/{total_num_qt}",
-                           font=(Q_FONT, 70, "bold"), fg=GREEN)
-    user_score_lbl.place(relx=0.5, rely=0.45, anchor=CENTER)
+                           font=(Q_FONT, 80, "bold"), fg=GREEN)
+    user_score_lbl.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     # Buttons
     play_again_btn = Button(end, text="PLAY AGAIN", font=(Q_FONT, BTN_SIZE),
                             fg=WHITE, bg=BLACK, width=15)
-    play_again_btn.place(relx=0.5, rely=0.7, anchor=CENTER)
-    save_results_btn = Button(end, text="SAVE RESULTS", font=(Q_FONT, BTN_SIZE),
-                              fg=WHITE, bg=BLACK, width=15)
-    save_results_btn.place(relx=0.5, rely=0.85, anchor=CENTER)
+    play_again_btn.place(relx=0.5, rely=0.8, anchor=CENTER)
 
     end.mainloop()
 
