@@ -90,7 +90,7 @@ def start_quiz():
 
 
 # Displays options for each question
-def display_options(master, lbl):
+def display_options(main, lbl):
     global q_num
     for opts in options_list:
         # If the question number matches with the options for that question
@@ -98,21 +98,21 @@ def display_options(master, lbl):
         if opts[0] == q_num:
             # Option 1 button
             opt1_txt = opts[1]  # Sets a variable for option 1
-            opt1 = Button(master, text=opt1_txt, font=(Q_FONT, BTN_SIZE),
+            opt1 = Button(main, text=opt1_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
                           check_opt(opt1, opt1_txt, 50))
             opt1.place(x=50, y=300)
 
             # Option 2 button
             opt2_txt = opts[2]  # Sets a variable for option 2
-            opt2 = Button(master, text=opt2_txt, font=(Q_FONT, BTN_SIZE),
+            opt2 = Button(main, text=opt2_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
                           check_opt(opt2, opt2_txt, 350))
             opt2.place(x=350, y=300)
 
             # Option 3 button
             opt3_txt = opts[3]  # Sets a variable for option 3
-            opt3 = Button(master, text=opt3_txt, font=(Q_FONT, BTN_SIZE),
+            opt3 = Button(main, text=opt3_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
                           check_opt(opt3, opt3_txt, 650))
             opt3.place(x=650, y=300)
@@ -120,15 +120,15 @@ def display_options(master, lbl):
     # Checks if selected option is correct answer
     def check_opt(opt_btn, selected_opt, opt_x):
         global q_num
-        result_lbl = Label(master, text="", font=(Q_FONT, 20))
+        result_lbl = Label(main, text="", font=(Q_FONT, 20))
         result_lbl.place(x=opt_x, y=400)
         for answer in questions_list:
             if answer[0] == q_num:
-                # If selected option is the answer then display "correct!"
+                # If selected option is the answer, display "correct!"
                 if selected_opt == answer[2]:
                     result_lbl.config(text="Correct!", fg=GREEN)
                     opt_btn.config(fg=BLACK, bg=LIGHT_GREEN)
-                # If selected option is not the answer then display "incorrect!"
+                # If selected option is not the answer, display "incorrect!"
                 else:
                     result_lbl.config(text="Incorrect!", fg=RED)
                     opt_btn.config(fg=BLACK, bg=LIGHT_RED)
@@ -137,19 +137,20 @@ def display_options(master, lbl):
                 opt1.config(state="disabled")
                 opt2.config(state="disabled")
                 opt3.config(state="disabled")
-                master.after(500, result_lbl.destroy)
+                main.after(500, result_lbl.destroy)
+
         # Next button can be clicked now
-        next_button(master, lbl, "answered")
+        next_button(main, lbl, "answered")
 
 
 # Displays Next button to go to next question
-def next_button(master, qt_lbl, qt_status):
-    next_btn = Button(master, text="Next", font=(Q_FONT, 20), fg=WHITE, bg=GREEN)
+def next_button(main, qt_lbl, qt_status):
+    next_btn = Button(main, text="Next", font=(Q_FONT, 20), fg=WHITE, bg=GREEN)
     next_btn.place(x=750, y=450)
     # If the question has been answered - option is selected
     if qt_status == "answered":
         # Then allow user to click "next" to go to next question
-        next_btn.config(command=lambda: change_question(master, qt_lbl))
+        next_btn.config(command=lambda: change_question(main, qt_lbl))
     else:
         # If not then display error message
         next_btn.config(command=msg_error)
@@ -162,18 +163,18 @@ def msg_error():
 
 
 # Changes the text in the question label
-def change_question(master, lbl):
+def change_question(main, lbl):
     global q_num
     q_num += 1  # Question number increases every time "next" button is clicked
 
-    next_button(master, lbl, "not answered")
+    next_button(main, lbl, "not answered")
     # Searches question in question list
     for qt in questions_list:
         if qt[0] == q_num:  # If it is question one
             # Changes the text in the question label
             lbl.config(text=qt[1])
 
-    display_options(master, lbl)  # Calls function to display options
+    display_options(main, lbl)  # Calls function to display options
 
 
 # Main Routine
