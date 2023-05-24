@@ -8,7 +8,7 @@ root = Tk()
 
 # Intro window to start the quiz
 def intro():
-    root.title("Maori Quiz")  # Sets title for window
+    root.title("Maori Quiz - Start")  # Sets title for window
     root.geometry("900x600")  # Sets dimensions for window
 
     # Intro to welcome user
