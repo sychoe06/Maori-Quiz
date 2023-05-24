@@ -1,6 +1,6 @@
-"""Component 4 - Main Loop (version 3)
-"Next" button can only be clicked once option has been selected.
-Displays an error message if "next" button is clicked before option
+"""Component 4 - Main Loop (version 4)
+"Correct" or "incorrect" text disappears after a couple seconds and change
+colour of selected option button to green if correct or red if incorrect
 """
 from tkinter import *
 from tkinter import messagebox
@@ -22,6 +22,8 @@ WHITE = "white"
 BLACK = "black"
 RED = "red"
 GREEN = "green"
+LIGHT_GREEN = "#8AC847"
+LIGHT_RED = "#ffcccb"
 
 QUIZ_NAME = "Maori Quiz"  # Name of Quiz
 BTN_SIZE = 25  # Size for option buttons and start button
@@ -98,45 +100,46 @@ def display_options(master, lbl):
             opt1_txt = opts[1]  # Sets a variable for option 1
             opt1 = Button(master, text=opt1_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
-                          check_opt(opt1_txt, 50))
+                          check_opt(opt1, opt1_txt, 50))
             opt1.place(x=50, y=300)
 
             # Option 2 button
             opt2_txt = opts[2]  # Sets a variable for option 2
             opt2 = Button(master, text=opt2_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
-                          check_opt(opt2_txt, 350))
+                          check_opt(opt2, opt2_txt, 350))
             opt2.place(x=350, y=300)
 
             # Option 3 button
             opt3_txt = opts[3]  # Sets a variable for option 3
             opt3 = Button(master, text=opt3_txt, font=(Q_FONT, BTN_SIZE),
                           width=10, fg=WHITE, bg=BLACK, command=lambda:
-                          check_opt(opt3_txt, 650))
+                          check_opt(opt3, opt3_txt, 650))
             opt3.place(x=650, y=300)
 
     # Checks if selected option is correct answer
-    def check_opt(selected_opt, opt_x):
+    def check_opt(opt_btn, selected_opt, opt_x):
         global q_num
+        result_lbl = Label(master, text="", font=(Q_FONT, 20))
+        result_lbl.place(x=opt_x, y=400)
         for answer in questions_list:
             if answer[0] == q_num:
                 # If selected option is the answer then display "correct!"
                 if selected_opt == answer[2]:
-                    correct_lbl = Label(master, text="Correct!",
-                                        font=(Q_FONT, 20), fg=GREEN)
-                    correct_lbl.place(x=opt_x, y=400)
+                    result_lbl.config(text="Correct!", fg=GREEN)
+                    opt_btn.config(fg=BLACK, bg=LIGHT_GREEN)
                 # If selected option is not the answer then display "incorrect!"
                 else:
-                    incorrect_lbl = Label(master, text="Incorrect!",
-                                          font=(Q_FONT, 20), fg=RED)
-                    incorrect_lbl.place(x=opt_x, y=400)
+                    result_lbl.config(text="Incorrect!", fg=RED)
+                    opt_btn.config(fg=BLACK, bg=LIGHT_RED)
 
                 # Disables all buttons so only one option is selected at a time
                 opt1.config(state="disabled")
                 opt2.config(state="disabled")
                 opt3.config(state="disabled")
-
-        next_button(master, lbl, "answered")  # Next button can be clicked now
+                master.after(500, result_lbl.destroy)
+        # Next button can be clicked now
+        next_button(master, lbl, "answered")
 
 
 # Displays Next button to go to next question
@@ -162,6 +165,7 @@ def msg_error():
 def change_question(master, lbl):
     global q_num
     q_num += 1  # Question number increases every time "next" button is clicked
+
     next_button(master, lbl, "not answered")
     # Searches question in question list
     for qt in questions_list:
