@@ -34,7 +34,7 @@ q_num = 0  # Sets question number
 
 # Intro window to start the quiz
 def intro():
-    root.title(QUIZ_NAME)  # Sets title for window
+    root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
     root.geometry(DIMENSIONS)  # Sets dimensions for window
 
     # Intro to welcome user
