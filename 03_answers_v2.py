@@ -1,5 +1,5 @@
 """Component 3 - Answers (version 2) - Trial two
-Using function to display buttons for each option
+Using place() to display the option buttons below question
 """
 from tkinter import *
 
@@ -87,7 +87,7 @@ def setup_options(parent, q_num):
 def display_options(parent, opt_text, opt_x):
     opt_btn = Button(parent, text=opt_text, font=("Calibri", 25),
                      width=10, fg="white", bg="black")
-    opt_btn.place(x=opt_x, y=300)  # Sets position of button
+    opt_btn.place(x=opt_x, y=300)  # Sets position of button using place
 
 
 # Main Routine

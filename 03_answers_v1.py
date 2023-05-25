@@ -1,5 +1,5 @@
-"""Component 3 - Answers (version 1) - Trial one
-Displaying options to answer question as buttons
+"""Component 3 - Answers (version 1) - Trial One
+Using pack() to display the option buttons below question
 """
 from tkinter import *
 
@@ -53,7 +53,7 @@ def start_quiz():
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
     change_question(question_lbl, 1)  # Displays Question 1
-    display_options(win, 1)  # Display options for Q1
+    setup_options(win, 1)
 
     # Sets up options for question
 
@@ -69,23 +69,25 @@ def change_question(lbl, q_num):
             lbl.config(text=question)
 
 
-# Displays options for each question
-def display_options(parent, q_num):
+# Sets up options for each question
+def setup_options(parent, q_num):
     for opts in options_list:
-        # If the question number matches with the options for that question
-        # Then display those options as buttons
         if opts[0] == q_num:
-            opt1 = Button(parent, text=opts[1], font=("Calibri", 25),
-                          width=10, fg="white", bg="black")
-            opt1.place(x=50, y=300)
+            opt1 = opts[1]  # Option 1
+            display_options(parent, opt1)  # calls function to display
 
-            opt2 = Button(parent, text=opts[2], font=("Calibri", 25),
-                          width=10, fg="white", bg="black")
-            opt2.place(x=350, y=300)
+            opt2 = opts[2]  # Option 2
+            display_options(parent, opt2)  # calls function to display
 
-            opt2 = Button(parent, text=opts[3], font=("Calibri", 25),
-                          width=10, fg="white", bg="black")
-            opt2.place(x=650, y=300)
+            opt3 = opts[3]  # Option 3
+            display_options(parent, opt3)  # calls function to display
+
+
+# Displays options as buttons
+def display_options(parent, opt_text):
+    opt_btn = Button(parent, text=opt_text, font=("Calibri", 25),
+                     width=10, fg="white", bg="black")
+    opt_btn.pack(padx=60, side=LEFT)  # Sets position of button using pack()
 
 
 # Main Routine
