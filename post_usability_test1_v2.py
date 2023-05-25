@@ -1,27 +1,23 @@
-"""Post Usability testing 1 - Add more questions (version 1)
-Add more questions to make quiz longer - edited to only show start quiz window
-Changed total number of questions to 10
+"""Post Usability testing 1 - Add more questions (trial 2)
+Shortened the question list by just having the key word in the question. So
+the question label is configured with the other words to make a question
 """
 from tkinter import *
 from tkinter import messagebox
 
 # Setup lists to hold questions, answers and options
-questions_list = [(1, "Q1: What is red in Maori?", "Whero"),
-                  (2, "Q2: What is 3 in Maori?", "Toru"),
-                  (3, "Q3: What is Sunday in Maori?", "Ratapu"),
-                  (4, "Q4: What is 10 in Maori?", "Tekau"),
-                  (5, "Q5: What is green in Maori?", "Kakariki"),
-                  (6, "Q6: What is Thursday in Maori?", "Rapare"),
-                  (7, "Q7: What is 6 in Maori?", "Ono"),
-                  (8, "Q8: What is brown in Maori?", "Parauri"),
-                  (9, "Q9: What is Monday in Maori?", "Rahina"),
-                  (10, "Q10: What is 8 in Maori?", "Waru")]
+questions_list = [(1, "red", "Whero"), (2, "3", "Toru"),
+                  (3, "Sunday", "Ratapu"), (4, "10", "Tekau"),
+                  (5, "green", "Kakariki"), (6, "Thursday", "Rapare"),
+                  (7, "6", "Ono"), (8, "brown", "Parauri"),
+                  (9, "Monday", "Rahina"), (10, "8", "Waru")]
 options_list = [(1, "Whero", "Kowhai", "Ma"), (2, "Tahi", "Rima", "Toru"),
                 (3, "Ratapu", "Ramere", "Rahori"), (4, "Waru", "Rua", "Tekau"),
                 (5, "Karaka", "Kakariki", "Kowhai"),
                 (6, "Raapa", "Ratu", "Rapare"), (7, "Iwa", "Ono", "Wha"),
                 (8, "Kikorangi", "Parauri", "Mangu"),
                 (9, "Rahina", "Ramere", "Ratu"), (10, "Whitu", "Rima", "Waru")]
+
 
 # Set up constants
 WHITE = "white"
@@ -41,7 +37,7 @@ HEIGHT = 600  # Width of window
 # Set up variables
 q_num = 0  # Sets question number
 score = 0  # Sets user's score
-total_num_qt = 10  # Total number of questions
+total_num_qt = 6  # Total number of questions
 
 
 # Starts Maori Quiz window
@@ -172,7 +168,7 @@ def change_question(main, lbl):
     for qt in questions_list:
         if qt[0] == q_num:  # If it is question one
             # Changes the text in the question label
-            lbl.config(text=qt[1])
+            lbl.config(text=f"Q{q_num}: What is {qt[1]} in Maori?")
 
     display_options(main, lbl)  # Calls function to display options
 
