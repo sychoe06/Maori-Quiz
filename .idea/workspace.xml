@@ -31,8 +31,8 @@
       <recent name="C:\Users\Sophia\OneDrive - Middleton Grange School\2023\13DTC\AS 3.7 Programming\Assessment\Maori Quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.06_end_quiz_v4">
-    <configuration name="04_run_quiz_v3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.02_questions_v3">
+    <configuration name="02_questions_v3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Maori Quiz" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -44,7 +44,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/04_run_quiz_v3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/02_questions_v3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.02_questions_v3" />
         <item itemvalue="Python.06_end_quiz_v4" />
         <item itemvalue="Python.06_end_quiz_v1" />
         <item itemvalue="Python.05_score_v1" />
         <item itemvalue="Python.04_run_quiz_v4" />
-        <item itemvalue="Python.04_run_quiz_v3" />
       </list>
     </recent_temporary>
   </component>

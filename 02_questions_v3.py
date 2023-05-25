@@ -4,6 +4,7 @@ Uses a function to change the text in the question label when called
 from tkinter import *
 
 root = Tk()
+questions_list = [(1, "Q1: What is red in Maori?")]
 
 
 # Intro window to start the quiz
@@ -56,7 +57,6 @@ def start_quiz():
 
 
 def change_question(label, q_num):
-    questions_list = [(1, "Q1: What is red in Maori?")]
     for qt in questions_list:
         if qt[0] == q_num:
             question = f"{qt[1]}"
