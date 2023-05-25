@@ -3,7 +3,6 @@ Only using the code needed for the End Quiz component - to save time
 Shows the user their score out of 6 in the end window
 """
 from tkinter import *
-from tkinter import messagebox
 
 # Set up constants
 WHITE = "white"

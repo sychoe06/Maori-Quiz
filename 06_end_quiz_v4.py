@@ -39,7 +39,7 @@ total_num_qt = 6  # Total number of questions
 
 # Intro window to start the quiz
 def intro():
-    root.deiconify()
+    root.deiconify()  # Redraws the intro window if it has been withdrawn
 
     root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
     root.geometry(DIMENSIONS)  # Sets dimensions for window
@@ -66,12 +66,15 @@ def intro():
 # Starts Maori Quiz window
 def start_quiz():
     global q_num
-    q_num = 0  # Resets question number to 0
-    root.withdraw()  # Deletes the starting window
+    q_num = 0  # Resets question number to 0 when quiz starts
+    global score
+    score = 0  # Resets score to 0 when quiz starts
+
+    root.withdraw()  # Hides the intro window
 
     # New Window is created using Tk class
     win = Tk()
-    win.deiconify()
+    win.deiconify()  # Redraws the start quiz window if it has been withdrawn
 
     win.title(QUIZ_NAME)  # Sets title for new window
     win.geometry(DIMENSIONS)  # Sets dimensions
@@ -101,7 +104,6 @@ def start_quiz():
 
 # Displays options for each question
 def display_options(main, lbl):
-    main.deiconify()
     global q_num
     for opts in options_list:
         # If the question number matches with the options for that question
@@ -162,7 +164,6 @@ def display_options(main, lbl):
 
 # Displays Next button to go to next question
 def next_button(main, qt_lbl, qt_status):
-    main.deiconify()
     global q_num
     next_btn = Button(main, text="Next", font=(Q_FONT, 20), fg=WHITE, bg=GREEN)
     next_btn.place(x=750, y=450)
@@ -185,7 +186,6 @@ def msg_error():
 
 # Changes the text in the question label
 def change_question(main, lbl):
-    main.deiconify()
     global q_num
     q_num += 1  # Question number increases every time "next" button is clicked
     next_button(main, lbl, "not answered")
@@ -201,10 +201,10 @@ def change_question(main, lbl):
 # End Maori Quiz window
 def end_quiz(quiz_window):
     global score
-    quiz_window.withdraw()
+    quiz_window.withdraw()  # Hides the start quiz window
 
     end = Tk()
-    end.deiconify()
+    end.deiconify()  # Redraws the end window if it has been withdrawn
     # New Window is created using Tk class for the end of the quiz
     end.title(f"{QUIZ_NAME} - End")  # Sets title for new window
     end.geometry(DIMENSIONS)  # Sets dimensions
