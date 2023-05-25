@@ -1,22 +1,20 @@
-"""Post Usability testing 1 - Show correct answer (version 3)
-Add more questions to make quiz longer - edited to only show start quiz window
+"""Assembled Outcome Testing
+Running through the entire quiz checking for any errors or bugs and testing it
 """
 from tkinter import *
 from tkinter import messagebox
 
 # Setup lists to hold questions, answers and options
-questions_list = [(1, "red", "Whero"), (2, "3", "Toru"),
-                  (3, "Sunday", "Ratapu"), (4, "10", "Tekau"),
-                  (5, "green", "Kakariki"), (6, "Thursday", "Rapare"),
-                  (7, "6", "Ono"), (8, "brown", "Parauri"),
-                  (9, "Monday", "Rahina"), (10, "8", "Waru")]
-options_list = [(1, "Whero", "Kowhai", "Ma"), (2, "Tahi", "Rima", "Toru"),
+questions_list = [(1, "Q1: What is red in Maori?", "Whero"),
+                  (2, "Q2: What is 3 in Maori?", "Toru"),
+                  (3, "Q3: What is Sunday in Maori?", "Ratapu"),
+                  (4, "Q4: What is 10 in Maori?", "Tekau"),
+                  (5, "Q5: What is green in Maori?", "Kakariki"),
+                  (6, "Q6: What is Thursday in Maori?", "Rapare")]
+options_list = [(1, "Whero", "Kowhai", "Ma"), (2, "Tahi", "rima", "Toru"),
                 (3, "Ratapu", "Ramere", "Rahori"), (4, "Waru", "Rua", "Tekau"),
                 (5, "Karaka", "Kakariki", "Kowhai"),
-                (6, "Raapa", "Ratu", "Rapare"), (7, "Iwa", "Ono", "Wha"),
-                (8, "Kikorangi", "Parauri", "Mangu"),
-                (9, "Rahina", "Ramere", "Ratu"), (10, "Whitu", "Rima", "Waru")]
-
+                (6, "Raapa", "Ratu", "Rapare")]
 
 # Set up constants
 WHITE = "white"
@@ -39,6 +37,32 @@ score = 0  # Sets user's score
 total_num_qt = 6  # Total number of questions
 
 
+# Intro window to start the quiz
+def intro():
+    root.deiconify()  # Redraws the intro window if it has been withdrawn
+
+    root.title(f"{QUIZ_NAME} - Start")  # Sets title for window
+    root.geometry(DIMENSIONS)  # Sets dimensions for window
+    root.maxsize(WIDTH, HEIGHT)  # Sets maximum dimensions
+
+    # Intro to welcome user
+    welcome_lbl = Label(root, text="Welcome to the",
+                        font=(Q_FONT, 20, "bold"), fg="black")
+    maori_quiz_lbl = Label(root, text=QUIZ_NAME,
+                           font=(Q_FONT, 50, "bold"), fg="red")
+
+    # Start button - activates quiz when clicked
+    start_btn = Button(root, text="START", font=(Q_FONT, BTN_SIZE, "bold"),
+                       bg=BLACK, fg=WHITE, command=start_quiz)
+
+    # Setting position - centering labels and button
+    welcome_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
+    maori_quiz_lbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+    start_btn.place(relx=0.5, rely=0.6, anchor=CENTER)
+
+    root.mainloop()
+
+
 # Starts Maori Quiz window
 def start_quiz():
     global q_num
@@ -46,7 +70,7 @@ def start_quiz():
     global score
     score = 0  # Resets score to 0 when quiz starts
 
-    # root.withdraw()  # Hides the intro window
+    root.withdraw()  # Hides the intro window
 
     # New Window is created using Tk class
     win = Tk()
@@ -69,17 +93,16 @@ def start_quiz():
     question_lbl = Label(win, text="", font=(Q_FONT, 25))
     question_lbl.place(relx=0.06, rely=0.25, anchor=NW)
 
-    # Calls function to change text in question
-    change_question(win, question_lbl)
+    result_lbl = Label(win, text="", font=(Q_FONT, 20))
 
-    q_status = "not answered"  # Option hasn't been selected yet
-    next_button(win, question_lbl, q_status)  # Calls next button function
+    # Calls function to change text in question
+    change_question(win, question_lbl, result_lbl)
 
     win.mainloop()
 
 
 # Displays options for each question
-def display_options(main, lbl):
+def display_options(main, lbl, result):
     global q_num
     for opts in options_list:
         # If the question number matches with the options for that question
@@ -108,29 +131,31 @@ def display_options(main, lbl):
 
     # Checks if selected option is correct answer
     def check_opt(opt_btn, selected_opt, opt_x):
-        result_lbl = Label(main, text="", font=(Q_FONT, 20))
-        result_lbl.place(x=opt_x, y=400)
+        result.place(x=opt_x, y=400)
+
         for answer in questions_list:
+            correct_opt = answer[2]
+            correct_answer = Label(main, text=f"The correct answer was {correct_opt}!")
             if answer[0] == q_num:
                 # If selected option is the answer, display "correct!"
                 if selected_opt == answer[2]:
-                    result_lbl.config(text="Correct!", fg=GREEN)
+                    result.config(text="Correct!", fg=GREEN)
                     opt_btn.config(fg=BLACK, bg=LIGHT_GREEN)
-
                     add_score()  # Adds to score
 
                 # If selected option is not the answer, display "incorrect!"
                 else:
-                    result_lbl.config(text="Incorrect!", fg=RED)
+                    result.config(text="Incorrect!", fg=RED)
                     opt_btn.config(fg=BLACK, bg=LIGHT_RED)
+                    correct_answer.place(x=400, y=200)
 
                 # Disables all buttons so only one option is selected at a time
                 opt1.config(state="disabled")
                 opt2.config(state="disabled")
                 opt3.config(state="disabled")
-                main.after(500, result_lbl.destroy)
+                # main.after(500, result_lbl.destroy)
         # Next button can be clicked now
-        next_button(main, lbl, "answered")
+        next_button(main, lbl, "answered", result)
 
     # Keeps record of user's score - number of questions correct
     def add_score():
@@ -139,14 +164,17 @@ def display_options(main, lbl):
 
 
 # Displays Next button to go to next question
-def next_button(main, qt_lbl, qt_status):
+def next_button(main, qt_lbl, qt_status, result):
     global q_num
     next_btn = Button(main, text="Next", font=(Q_FONT, 20), fg=WHITE, bg=GREEN)
     next_btn.place(x=750, y=450)
     # If the question has been answered - option is selected
-    if qt_status == "answered":
+    if q_num >= total_num_qt:
+        next_btn.config(command=lambda: end_quiz(main))
+    elif qt_status == "answered":
         # Then allow user to click "next" to go to next question
-        next_btn.config(command=lambda: change_question(main, qt_lbl))
+        next_btn.config(command=lambda: change_question(main, qt_lbl, result))
+        result.destroy()
     else:
         # If not then display error message
         next_btn.config(command=msg_error)
@@ -159,18 +187,55 @@ def msg_error():
 
 
 # Changes the text in the question label
-def change_question(main, lbl):
+def change_question(main, lbl, result):
     global q_num
     q_num += 1  # Question number increases every time "next" button is clicked
-    next_button(main, lbl, "not answered")
+    next_button(main, lbl, "not answered", result)
     # Searches question in question list
     for qt in questions_list:
         if qt[0] == q_num:  # If it is question one
             # Changes the text in the question label
-            lbl.config(text=f"Q{q_num}: What is {qt[1]} in Maori?")
+            lbl.config(text=qt[1])
 
-    display_options(main, lbl)  # Calls function to display options
+    display_options(main, lbl, result)  # Calls function to display options
+
+
+# End Maori Quiz window
+def end_quiz(quiz_window):
+    global score
+    quiz_window.withdraw()  # Hides the start quiz window
+
+    end = Tk()
+    end.deiconify()  # Redraws the end window if it has been withdrawn
+    # New Window is created using Tk class for the end of the quiz
+    end.title(f"{QUIZ_NAME} - End")  # Sets title for new window
+    end.geometry(DIMENSIONS)  # Sets dimensions
+    end.maxsize(WIDTH, HEIGHT)  # Sets maxsize for window
+
+    # Create a canvas object
+    finished_quiz = Canvas(end, width=WIDTH, height=100, bg=RED)
+
+    # Add the name "Maori Quiz" in Canvas
+    finished_quiz.create_text(450, 50, fill=WHITE, font=(Q_FONT, 30, "bold"),
+                              text="Congrats! You have finished the quiz!")
+    finished_quiz.pack()
+
+    # Score labels created
+    score_lbl = Label(end, text="Your score is...", font=(Q_FONT, 20))
+    score_lbl.place(relx=0.5, rely=0.3, anchor=CENTER)
+    user_score_lbl = Label(end, text=f"{score}/{total_num_qt}",
+                           font=(Q_FONT, 80, "bold"), fg=GREEN)
+    user_score_lbl.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+    # Buttons
+    play_again_btn = Button(end, text="PLAY AGAIN", font=(Q_FONT, BTN_SIZE),
+                            fg=WHITE, bg=BLACK, width=15, command=intro)
+    play_again_btn.place(relx=0.5, rely=0.8, anchor=CENTER)
+
+    end.mainloop()
 
 
 # Main routine
-start_quiz()
+root = Tk()
+
+intro()
