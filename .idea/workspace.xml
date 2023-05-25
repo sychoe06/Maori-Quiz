@@ -31,7 +31,7 @@
       <recent name="C:\Users\Sophia\OneDrive - Middleton Grange School\2023\13DTC\AS 3.7 Programming\Assessment\Maori Quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.post_usability_test2">
+  <component name="RunManager" selected="Python.assembled_outcome_test">
     <configuration name="07_button_colour (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Maori Quiz" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -181,9 +181,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.assembled_outcome_test" />
         <item itemvalue="Python.post_usability_test2" />
         <item itemvalue="Python.07_button_colour (1)" />
-        <item itemvalue="Python.assembled_outcome_test" />
         <item itemvalue="Python.Post_usability_part1_v1" />
         <item itemvalue="Python.07_post_usability_part1_v1" />
       </list>
