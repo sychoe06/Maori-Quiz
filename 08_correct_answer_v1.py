@@ -21,20 +21,19 @@ class Quiz:
         self.b1.pack()
 
         # Option 2 button
-        self.b2 = Button(s1, text=opt2, command=lambda: self.check(opt2)
+        self.b2 = Button(s1, text=opt2, command=lambda: self.check(opt2))
         self.b2.pack()
 
         # Option 3 button
-        self.b3 = Button(s1, text=opt3, command=lambda: self.check(opt3)
+        self.b3 = Button(s1, text=opt3, command=lambda: self.check(opt3))
         self.b3.pack()
 
         # "Next" button - display next question
-        self.next_btn = Button(s1, text="NEXT", font=(Q_FONT, 20), fg=WHITE,
-                               bg=GREEN, width=7, command=self.next_qt)
+        self.next_btn = Button(s1, text="NEXT", command=self.next_qt)
         self.next_btn.pack()
 
-        self.result = Label(s1, font=(Q_FONT, 20))
-        self.correct = Label(s1, font=(Q_FONT, 20), fg=GREEN, bg=LIGHT_GREEN)
+        self.result = Label(s1, text="")
+        self.correct = Label(s1, text="")
         self.answered = False
 
     # Checks if the selection option is correct or incorrect
@@ -95,19 +94,6 @@ class Quiz:
 def start_quiz():
     # New Window is created using Tk class
     win = Tk()
-    win.title(QUIZ_NAME)  # Sets title for new window
-    win.geometry(DIMENSIONS)  # Sets dimensions
-    win.maxsize(WIDTH, HEIGHT)  # Sets maximum dimensions
-    win.minsize(850, 550)  # Sets minimum dimensions
-
-    # Create a canvas object
-    quiz_name = Canvas(win, width=900, height=100, bg=RED)
-
-    # Add the name "Maori Quiz" in Canvas
-    quiz_name.create_text(450, 50, text=QUIZ_NAME, fill=WHITE,
-                          font=(Q_FONT, 30, "bold"))
-    quiz_name.pack()
-
     q_num = 1  # Sets question number to 1
     for qt in questions_list:
         if qt[0] == q_num:
@@ -154,21 +140,6 @@ questions_list = [(1, "Q1: What is red in Maori?", "Whero", "Kowhai", "Ma"),
 answers_list = [(1, "Whero"), (2, "Toru"), (3, "Ratapu"), (4, "Tekau"),
                 (5, "Kakariki"), (6, "Rapare"), (7, "Ono"), (8, "Parauri"),
                 (9, "Rahina"), (10, "Waru")]
-
-# Set up constants
-WHITE = "white"
-BLACK = "black"
-RED = "red"
-GREEN = "green"
-LIGHT_GREEN = "#8AC847"
-LIGHT_RED = "#ffcccb"
-
-QUIZ_NAME = "Maori Quiz"  # Name of Quiz
-BTN_SIZE = 25  # Size for option buttons and start button
-Q_FONT = "Calibri"  # Quiz Font
-DIMENSIONS = "900x600"  # Dimensions of window
-WIDTH = 900  # Height of window
-HEIGHT = 600  # Width of window
 
 # Run the quiz
 start_quiz()
