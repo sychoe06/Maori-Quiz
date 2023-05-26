@@ -1,4 +1,4 @@
-"""Component 8 - Post Usability testing - show correct answer (version 1)
+"""Component 8 - Post Usability testing 1: Show correct answer (version 1)
 Only using the code needed for this component - to save time
 If the user gets the answer wrong then the correct answer is shown
 """

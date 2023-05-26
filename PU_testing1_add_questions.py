@@ -1,4 +1,4 @@
-"""Post Usability testing 1 - Add more questions (trial 1)
+"""Post Usability testing 1: Add questions
 Add more questions to make quiz longer - edited to only show start quiz window
 Changed total number of questions to 10
 """

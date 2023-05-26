@@ -1,5 +1,5 @@
-"""Component 7 - Button colour - Post usability testing 1
-Change the colour of a button when the mouse hovers over it
+"""Component 7 - Post Usability testing 1: Button colour (version 1)
+Change the colour of a button when the mouse hovers over it - just a test
 """
 
 # import required module
