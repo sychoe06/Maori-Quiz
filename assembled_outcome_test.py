@@ -225,7 +225,7 @@ def end_quiz(quiz_window):
                            font=(Q_FONT, 80, "bold"), fg=GREEN)
     user_score_lbl.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-    # Buttons
+    # Play again Button
     play_again_btn = Button(end, text="PLAY AGAIN", font=(Q_FONT, BTN_SIZE),
                             fg=WHITE, bg=BLACK, width=15, command=intro)
     play_again_btn.place(relx=0.5, rely=0.8, anchor=CENTER)
