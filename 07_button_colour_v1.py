@@ -1,8 +1,6 @@
 """Component 7 - Post Usability testing 1: Button colour (version 1)
-Change the colour of a button when the mouse hovers over it - just a test
+Change the colour of a button when the mouse hovers over it - testing purposes
 """
-
-# import required module
 from tkinter import *
 
 
