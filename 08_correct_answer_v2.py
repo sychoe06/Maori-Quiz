@@ -1,6 +1,6 @@
 """Component 8 - Post Usability testing 1: Show correct answer (version 2)
-Only using the code needed for this component - to save time
-If the user gets the answer wrong then the correct answer is shown
+Further edited the class to make it have the same interface layout as
+the assembled outcome.
 """
 from tkinter import *
 from tkinter import messagebox
