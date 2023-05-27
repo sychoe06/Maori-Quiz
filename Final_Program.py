@@ -1,5 +1,5 @@
-"""
-
+"""Final Working Program - Maori Quiz program
+This is the Maori Quiz program that tests your knowledge on Te Reo Maori
 """
 from tkinter import *
 from tkinter import messagebox
@@ -7,10 +7,12 @@ from tkinter import messagebox
 
 class Quiz:
     def __init__(self, s1, qt, opt1, opt2, opt3, qt_num):
+        global score
+        score = 0
         self.s1 = s1
         f1 = Frame(self.s1)
         f1.pack()
-        self.qt_num = qt_num  # Question number
+
         # Question label
         self.question = Label(s1, text=qt, font=(Q_FONT, 25))
         self.question.place(relx=0.06, rely=0.25, anchor=NW)
@@ -42,12 +44,16 @@ class Quiz:
         self.next_btn.place(x=720, y=480)
         change_on_hover(self.next_btn, LIGHT_GREEN, GREEN)  # changes hover colour
 
+        self.qt_num = qt_num  # Question number
         self.result = Label(s1, font=(Q_FONT, 20))
         self.correct = Label(s1, font=(Q_FONT, 20), fg=GREEN, bg=LIGHT_GREEN)
         self.answered = False
 
+        self.question_progress()
+
     # Checks if the selection option is correct or incorrect
     def check(self, selected_opt, opt_btn, opt_x):
+        global score
         self.answered = True
         for a in answers_list:
             if a[0] == self.qt_num:
@@ -56,38 +62,44 @@ class Quiz:
                     # Then display "correct!"
                     self.result.config(text="Correct!", fg=GREEN)
                     opt_btn.config(bg=LIGHT_GREEN)  # button changes to green
+                    btn_colour = LIGHT_GREEN
+                    score += 1
                 # If the selected option doesn't match the answer
                 else:
                     # Then display "incorrect" and the correct answer
                     self.result.config(text="Incorrect!", fg=RED)
                     opt_btn.config(bg=LIGHT_RED)  # button changes to red
+                    btn_colour = LIGHT_RED
                     self.correct.config(text=f"{a[1]} is the correct answer!")
                     self.correct.place(relx=0.06, rely=0.35, anchor=NW)
-            self.result.place(x=opt_x, y=400, anchor=W)
-            disable_btn(self.b1)
-            disable_btn(self.b2)
-            disable_btn(self.b3)
 
-            # Button colour no longer changes on hover because its disabled
-            if self.b1 == opt_btn:
-                # Change selected option button to stay light green or red
-                change_on_hover(opt1, btn_colour, btn_colour)
-                # Keep other option buttons black
-                change_on_hover(opt2, BLACK, BLACK)
-                change_on_hover(opt3, BLACK, BLACK)
-            elif opt2 == opt_btn:
-                change_on_hover(opt2, btn_colour, btn_colour)
-                change_on_hover(opt1, BLACK, BLACK)
-                change_on_hover(opt3, BLACK, BLACK)
-            else:
-                change_on_hover(opt3, btn_colour, btn_colour)
-                change_on_hover(opt1, BLACK, BLACK)
-                change_on_hover(opt2, BLACK, BLACK)
+                self.result.place(x=opt_x, y=400, anchor=W)
+
+                disable_btn(self.b1)
+                disable_btn(self.b2)
+                disable_btn(self.b3)
+
+                # Button colour no longer changes on hover because its disabled
+                if self.b1 == opt_btn:
+                    # Change selected option button to stay light green or red
+                    change_on_hover(self.b1, btn_colour, btn_colour)
+                    # Keep other option buttons black
+                    change_on_hover(self.b2, BLACK, BLACK)
+                    change_on_hover(self.b3, BLACK, BLACK)
+                elif self.b2 == opt_btn:
+                    change_on_hover(self.b2, btn_colour, btn_colour)
+                    change_on_hover(self.b1, BLACK, BLACK)
+                    change_on_hover(self.b3, BLACK, BLACK)
+                else:
+                    change_on_hover(self.b3, btn_colour, btn_colour)
+                    change_on_hover(self.b1, BLACK, BLACK)
+                    change_on_hover(self.b2, BLACK, BLACK)
 
     # Changes the button's text and command
     def change_btn(self, btn, opt, opt_x):
         btn.config(text=opt, bg=BLACK, command=lambda: self.check(opt, btn,
                                                                   opt_x))
+        change_on_hover(btn, GREY, BLACK)
 
     # Displays the next question and options
     def next_qt(self):
@@ -97,6 +109,7 @@ class Quiz:
             self.result.place_forget()
             self.correct.place_forget()
             self.qt_num += 1  # Increase the question number by 1
+            self.question_progress()
 
             for qt in questions_list:
                 if qt[0] == self.qt_num:
@@ -121,6 +134,12 @@ class Quiz:
         # If the question hasn't been answered then don't go to next question
         else:
             msg_error()  # Display an error to the user instead
+
+    # Shows how many questions the user has done out of 10
+    def question_progress(self):
+        qt_progress = Label(self.s1, font=(Q_FONT, 15), fg=GREY,
+                            text=f"Question {self.qt_num}/{total_num_qt}")
+        qt_progress.place(relx=0.92, rely=0.28, anchor=NE)
 
 
 # Intro window to start the quiz
@@ -179,6 +198,7 @@ def start_quiz():
 
 
 def end_quiz(win):
+    global score
     win.withdraw()  # Hides the start quiz window
 
     end = Tk()
@@ -196,9 +216,17 @@ def end_quiz(win):
                               text="Congrats! You have finished the quiz!")
     finished_quiz.pack()
 
+    # Score labels created
+    score_lbl = Label(end, text="Your score is...", font=(Q_FONT, 20))
+    score_lbl.place(relx=0.5, rely=0.25, anchor=CENTER)
+    user_score_lbl = Label(end, text=f"{score}/{total_num_qt}",
+                           font=(Q_FONT, 80, "bold"), fg=GREEN)
+    user_score_lbl.place(relx=0.5, rely=0.45, anchor=CENTER)
+
     # Play again button
     play_again_btn = Button(end, text="PLAY AGAIN", font=(Q_FONT, BTN_SIZE),
-                            fg=WHITE, bg=BLACK, width=15, command=intro)
+                            fg=WHITE, bg=BLACK, width=15,
+                            command=lambda: again(end))
     play_again_btn.place(relx=0.5, rely=0.7, anchor=CENTER)
     change_on_hover(play_again_btn, GREY, BLACK)  # changes hover colour
 
@@ -242,7 +270,12 @@ def confirm(end_window):
                                                     "exit the Maori Quiz?")
     if close == "yes":
         end_window.destroy()  # Close the end window
-        root.destroy()  # Close the intro window (if it is opened)
+
+
+# This function is called when user wants to play again
+def again(end_window):
+    end_window.withdraw()  # Hides the end window
+    intro()  # Calls the intro window function
 
 
 # Main routine
@@ -285,6 +318,7 @@ WIDTH = 900  # Height of window
 HEIGHT = 600  # Width of window
 
 total_num_qt = 10  # Total number of questions
+score = 0  # Sets score to 0
 
 # Run the quiz
 root = Tk()
