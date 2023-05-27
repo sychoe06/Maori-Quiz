@@ -1,4 +1,4 @@
-"""Post Usability testing 2: Questions left (version 2)
+"""Post Usability testing 2: Progress
 Shows user how many questions they have answered out of 10 - shows progress
 """
 from tkinter import *
