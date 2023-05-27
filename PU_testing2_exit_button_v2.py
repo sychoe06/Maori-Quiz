@@ -64,6 +64,7 @@ def confirm(end_window):
                                                     "exit the Maori Quiz?")
     if close == "yes":
         end_window.destroy()  # Close the end window
+        exit()
 
 
 # Main routine
