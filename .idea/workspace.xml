@@ -31,7 +31,7 @@
       <recent name="C:\Users\Sophia\OneDrive - Middleton Grange School\2023\13DTC\AS 3.7 Programming\Assessment\Maori Quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.08_correct_answer_v1">
+  <component name="RunManager" selected="Python.Final_Program">
     <configuration name="08_correct_answer_v1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Maori Quiz" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,9 +139,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Final_Program" />
         <item itemvalue="Python.08_correct_answer_v1" />
         <item itemvalue="Python.PU_testing2_exit_button_v2" />
-        <item itemvalue="Python.Final_Program" />
         <item itemvalue="Python.Assembled_outcome_test" />
         <item itemvalue="Python.08_correct_answer_v2" />
       </list>
